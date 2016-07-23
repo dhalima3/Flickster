@@ -1,6 +1,7 @@
 package com.daryl.flickster.adapters;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,16 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             convertView = inflater.inflate(R.layout.item_movie, parent, false);
         }
 
-        ImageView ivImage = (ImageView) convertView.findViewById(R.id.ivMovieImage);
-        ivImage.setImageResource(0);
+        int orientation = getContext().getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            ImageView ivPosterImage = (ImageView) convertView.findViewById(R.id.ivPosterMovieImage);
+            ivPosterImage.setImageResource(0);
+            Picasso.with(getContext()).load(movie.getPosterPath()).into(ivPosterImage);
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            ImageView ivBackdropImage = (ImageView) convertView.findViewById(R.id.ivBackdropMovieImage);
+            ivBackdropImage.setImageResource(0);
+            Picasso.with(getContext()).load(movie.getBackdropPath()).into(ivBackdropImage);
+        }
 
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tvMovieTitle);
         TextView tvOverview = (TextView) convertView.findViewById(R.id.tvOverview);
@@ -38,7 +47,6 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         tvTitle.setText(movie.getOriginalTitle());
         tvOverview.setText(movie.getOverview());
 
-        Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
 
         return convertView;
     }
