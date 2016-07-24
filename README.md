@@ -17,7 +17,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 * [X] Add pull-to-refresh for popular stream with SwipeRefreshLayout **(1 point)**
-* [ ] Display a nice default placeholder graphic for each image during loading (read more about Picasso) **(1 point)**
+* [X] Display a nice default placeholder graphic for each image during loading (read more about Picasso) **(1 point)**
 * [ ] Improve the user interface through styling and coloring (**1 to 5 points** depending on the difficulty of UI improvements)
 * [ ] For popular movies (i.e. a movie voted for more than 5 stars), the full backdrop image is displayed. Otherwise, a poster image, the movie title, and overview is listed. Use Heterogenous ListViews and use different ViewHolder layout files for popular movies and less popular ones. **(2 points)**
 * [ ] **Stretch**: Expose details of movie (ratings using RatingBar, popularity, and synopsis) in a separate activity. **(3 points)**
