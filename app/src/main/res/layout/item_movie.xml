@@ -9,6 +9,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:adjustViewBounds="true"
+        android:onClick="setMovieListVIewOnItemClickListener"
         tools:src="@mipmap/ic_launcher"/>
 
     <TextView

@@ -1,9 +1,12 @@
 package com.daryl.flickster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.daryl.flickster.adapters.MovieArrayAdapter;
@@ -43,6 +46,21 @@ public class MovieActivity extends AppCompatActivity {
         initializeSwipeMovieContainer();
 
         getMovieJson(MOVIE_API_URL, client);
+    }
+
+    public void setMovieListVIewOnItemClickListener(View view) {
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg) {
+                Movie movie = movies.get(position);
+                Intent intent = new Intent(MovieActivity.this, MovieDetailsActivity.class);
+                intent.putExtra("originalTitle", movie.getOriginalTitle());
+                intent.putExtra("overview", movie.getOverview());
+                intent.putExtra("voteAverage", movie.getVoteAverage());
+                intent.putExtra("backdropPath", movie.getBackdropPath());
+                startActivity(intent);
+            }
+        });
     }
 
     protected void initializeSwipeMovieContainer() {

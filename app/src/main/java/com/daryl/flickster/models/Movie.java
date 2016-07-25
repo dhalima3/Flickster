@@ -12,7 +12,7 @@ public class Movie {
     String originalTitle;
     String overview;
     String backdropPath;
-    Double voteAverage;
+    float voteAverage;
     boolean isPopular;
 
     public Movie(JSONObject jsonObject) throws JSONException {
@@ -20,7 +20,7 @@ public class Movie {
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
         this.backdropPath = jsonObject.getString("backdrop_path");
-        this.voteAverage = jsonObject.getDouble("vote_average");
+        this.voteAverage = (float) jsonObject.getDouble("vote_average");
         isPopular = Double.compare(this.voteAverage, 5.0) > 0;
     }
 
@@ -53,7 +53,7 @@ public class Movie {
         return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
     }
 
-    public Double getVoteAverage() {
+    public float getVoteAverage() {
         return voteAverage;
     }
 
