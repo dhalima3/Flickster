@@ -12,12 +12,16 @@ public class Movie {
     String originalTitle;
     String overview;
     String backdropPath;
+    Double voteAverage;
+    boolean isPopular;
 
     public Movie(JSONObject jsonObject) throws JSONException {
         this.posterPath = jsonObject.getString("poster_path");
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
         this.backdropPath = jsonObject.getString("backdrop_path");
+        this.voteAverage = jsonObject.getDouble("vote_average");
+        isPopular = Double.compare(this.voteAverage, 5.0) > 0;
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray jsonArray) {
@@ -49,4 +53,11 @@ public class Movie {
         return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
     }
 
+    public Double getVoteAverage() {
+        return voteAverage;
+    }
+
+    public boolean isPopular() {
+        return isPopular;
+    }
 }
